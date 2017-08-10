@@ -20,6 +20,39 @@ class App extends Component {
         
         <Header/>
         <Content/>
+        <Clock/> {//we can pass props of new date from here and work
+        }
+      </div>
+    );
+  }
+}
+
+class Clock extends Component {
+  constructor(props){
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount(){
+    this.timeID = setInterval(
+      () => {this.tick()}, 1000)
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timeID)
+  }
+
+  tick(){
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render(){
+    return(
+      <div>
+        <h1>Hello World</h1>
+        <h2>Current Time : {this.state.date.toLocaleTimeString()}</h2>
       </div>
     );
   }
