@@ -30,7 +30,7 @@ class App extends Component {
 class Clock extends Component {
   constructor(props){
     super(props);
-    this.state = {date: new Date()};
+    this.state = {date: new Date(), comment: "hello"};
   }
 
   componentDidMount(){
@@ -44,8 +44,13 @@ class Clock extends Component {
 
   tick(){
     this.setState({
-      date: new Date()
-    });
+      date: new Date(),
+      comment: this.state.comment + "x"
+    }); 
+    {/*
+      this is a right way to update state everytime
+      react batch them togther synchronously or asynchronously
+    */}
   }
 
   render(){
@@ -53,6 +58,7 @@ class Clock extends Component {
       <div>
         <h1>Hello World</h1>
         <h2>Current Time : {this.state.date.toLocaleTimeString()}</h2>
+        {this.state.comment}
       </div>
     );
   }
